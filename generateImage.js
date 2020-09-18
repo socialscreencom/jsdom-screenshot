@@ -15,13 +15,12 @@ const createServer = async (html, { serve }) => {
   const finalhandler = require("finalhandler");
 
   const app = connect();
-  app.use(
-    (request, response, next) =>
-      request.url === "/" ? response.end(html) : next()
+  app.use((request, response, next) =>
+    request.url === "/" ? response.end(html) : next()
   );
 
   // serve all public paths
-  serve.forEach(servedFolder => app.use(serveStatic(servedFolder)));
+  serve.forEach((servedFolder) => app.use(serveStatic(servedFolder)));
 
   app.use(finalhandler);
   const server = http.createServer(app);
@@ -36,12 +35,12 @@ const createServer = async (html, { serve }) => {
     const startServer = () => {
       // 0 assigns a random port, but it does not guarantee that it is unsed
       // We still need to handle that case
-      server.once("error", e => {
+      server.once("error", (e) => {
         if (e.code === "EADDRINUSE") server.close(startServer);
       });
       // 0 assigns a random port.
       // The port may be used, so we have to retry to find an unused port
-      server.listen(0, err => (err ? reject(err) : resolve()));
+      server.listen(0, (err) => (err ? reject(err) : resolve()));
     };
     startServer();
   });
@@ -82,7 +81,7 @@ const takeScreenshot = async (url, opts) => {
               x: target.offsetLeft,
               y: target.offsetTop,
               width: target.offsetWidth,
-              height: target.offsetHeight
+              height: target.offsetHeight,
             }
           : // fall back to manual clipping values in case the element could
             // not be found
@@ -99,7 +98,7 @@ const takeScreenshot = async (url, opts) => {
   return image;
 };
 
-const generateImage = async options => {
+const generateImage = async (options) => {
   const opts = getMergedOptions(options);
 
   // Allows easy debugging by passing generateImage({ debug: true })
@@ -125,7 +124,7 @@ const generateImage = async options => {
   const server = await createServer(html, opts);
   const url = `http://localhost:${server.address().port}`;
   const screenshot = await takeScreenshot(url, opts);
-  await new Promise(resolve => server.close(resolve));
+  await new Promise((resolve) => server.close(resolve));
   return screenshot;
 };
 

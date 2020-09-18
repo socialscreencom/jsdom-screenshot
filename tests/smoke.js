@@ -1,6 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const jsdom = require("jsdom");
+
 const { JSDOM } = jsdom;
 const { generateImage } = require("../index");
 

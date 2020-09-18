@@ -16,7 +16,7 @@ function prettyDOM(htmlElement, maxLength, options) {
       {
         plugins: [DOMElement, DOMCollection],
         printFunctionName: false,
-        highlight: true
+        highlight: true,
       },
       options
     )

@@ -14,5 +14,5 @@ module.exports = {
   generateImage: require("./generateImage"),
   setDefaultOptions: require("./options").setDefaultOptions,
   restoreDefaultOptions: require("./options").restoreDefaultOptions,
-  debug: require("./debug")
+  debug: require("./debug"),
 };

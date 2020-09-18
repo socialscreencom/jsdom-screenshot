@@ -4,7 +4,7 @@ const defaultOptionsTemplate = {
   waitUntilNetworkIdle: false,
   launch: {},
   screenshot: undefined,
-  serve: []
+  serve: [],
 };
 
 let defaultOptions = defaultOptionsTemplate;
@@ -18,7 +18,7 @@ const addArg = (opts, arg) => {
   }
 };
 
-module.exports.setDefaultOptions = options => {
+module.exports.setDefaultOptions = (options) => {
   defaultOptions = merge({}, defaultOptionsTemplate, options);
 };
 
@@ -26,7 +26,7 @@ module.exports.restoreDefaultOptions = () => {
   defaultOptions = defaultOptionsTemplate;
 };
 
-module.exports.getMergedOptions = options => {
+module.exports.getMergedOptions = (options) => {
   const opts = merge({}, defaultOptions, options);
 
   // config sugar to let users specify viewport directly
